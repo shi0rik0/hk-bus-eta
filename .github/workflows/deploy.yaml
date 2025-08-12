@@ -8,6 +8,8 @@ on:
 jobs:
   build-and-deploy: # Define a job named 'build-and-deploy'
     runs-on: ubuntu-latest # Specify the runner environment (Ubuntu latest version)
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repository # Step 1: Checkout your repository code
