@@ -15,4 +15,5 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
+  base: '/hk-bus-eta/', // Deploy this website at example.com/hk-bus-eta/
 })
