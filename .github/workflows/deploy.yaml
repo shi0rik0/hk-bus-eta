@@ -1,0 +1,36 @@
+name: Deploy to GitHub Pages # Name of the workflow, displayed in the GitHub Actions tab
+
+on:
+  push:
+    branches:
+      - main # Trigger the workflow on pushes to the 'main' branch
+
+jobs:
+  build-and-deploy: # Define a job named 'build-and-deploy'
+    runs-on: ubuntu-latest # Specify the runner environment (Ubuntu latest version)
+
+    steps:
+      - name: Checkout repository # Step 1: Checkout your repository code
+        uses: actions/checkout@v4 # Uses the official action to checkout your code
+
+      - name: Set up Node.js environment # Step 2: Set up the Node.js environment
+        uses: actions/setup-node@v4 # Uses the official action to set up Node.js
+        with:
+          node-version: '20' # Specify the Node.js version. You can choose '18', '20', '22', etc.
+
+      - name: Install dependencies # Step 3: Install project dependencies
+        run: npm install # Executes the npm install command
+
+      - name: Run build command # Step 4: Run your project's build command
+        run: npm run build # Executes the npm run build command, which generates your production assets (usually in a 'dist' folder)
+
+      - name: Deploy to GitHub Pages # Step 5: Deploy the build output to the gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4 # Uses a popular third-party action for deploying to GitHub Pages
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }} # Use the default GitHub token provided by GitHub Actions (has write permissions)
+          publish_dir: ./dist # Specify the directory to publish. This should be your build output directory.
+          publish_branch: gh-pages # Specify the target branch for deployment (e.g., 'gh-pages')
+          # Optional configurations:
+          # cname: example.com # Uncomment and set your custom domain if you have one
+          # user_name: 'github-actions[bot]' # Customize the commit author name
+          # user_email: 'github-actions[bot]@users.noreply.github.com' # Customize the commit author email
