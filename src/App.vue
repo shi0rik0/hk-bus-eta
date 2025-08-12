@@ -9,7 +9,6 @@ enum BusCompany {
 
 // Define TypeScript interface for list items
 interface ListItem {
-  id: number
   dest: string
   stopName: string
   category: string
@@ -20,13 +19,11 @@ interface ListItem {
   eta: number[]
 }
 
-// Example data, you can replace it with data fetched from an API
 const items = ref<ListItem[]>([
   {
-    id: 1,
-    dest: '宝琳', // Po Lam
-    stopName: '将军澳隧道巴士转乘站', // Tseung Kwan O Tunnel Bus Interchange
-    category: '将军澳', // Tseung Kwan O
+    dest: '宝琳',
+    stopName: '將軍澳隧道巴士轉乘站',
+    category: '將軍澳隧道巴士轉乘站->坑口',
     stopId: '97D1981DE7ECBCE7',
     route: '297',
     serviceType: '1',
@@ -34,12 +31,21 @@ const items = ref<ListItem[]>([
     eta: [],
   },
   {
-    id: 2, // Changed ID to be unique
-    dest: '火炭(骏洋邨)', // Fo Tan (Chun Yeung Estate)
-    stopName: '将军澳隧道巴士转乘站', // Tseung Kwan O Tunnel Bus Interchange
-    category: '将军澳', // Tseung Kwan O
+    dest: '坑口',
+    stopName: '將軍澳隧道巴士轉乘站',
+    category: '將軍澳隧道巴士轉乘站->坑口',
     stopId: '003595',
     route: '798',
+    serviceType: '',
+    company: BusCompany.CTB,
+    eta: [],
+  },
+  {
+    dest: '坑口',
+    stopName: '將軍澳隧道巴士轉乘站',
+    category: '將軍澳隧道巴士轉乘站->坑口',
+    stopId: '003595',
+    route: 'A29',
     serviceType: '',
     company: BusCompany.CTB,
     eta: [],
@@ -163,7 +169,7 @@ onBeforeUnmount(() => {
           @click="toggleCategory(category)"
           class="w-full flex justify-between items-center p-4 text-left text-lg font-semibold text-gray-700 bg-gray-50 hover:bg-gray-100 transition-colors duration-200"
         >
-          <span>{{ category }} ({{ getItemsByCategory(category).length }})</span>
+          <span>{{ category }}</span>
           <!-- Collapse/expand icon, rotates based on state -->
           <svg
             :class="{ 'rotate-180': collapsedCategories[category] }"
