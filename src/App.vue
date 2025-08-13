@@ -50,6 +50,26 @@ const items = ref<ListItem[]>([
     company: BusCompany.CTB,
     eta: [],
   },
+  {
+    dest: '機場',
+    stopName: '帝都酒店',
+    category: '家->機場',
+    stopId: '6ACFA599CC0EA4E0',
+    route: 'A41',
+    serviceType: '1',
+    company: BusCompany.KMB,
+    eta: [],
+  },
+  {
+    dest: '機場',
+    stopName: '帝都酒店',
+    category: '家->機場',
+    stopId: '6ACFA599CC0EA4E0',
+    route: 'A46',
+    serviceType: '1',
+    company: BusCompany.KMB,
+    eta: [],
+  },
 ])
 
 // Reactive object to store the collapsed state for each category
